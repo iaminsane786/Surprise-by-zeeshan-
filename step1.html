@@ -109,20 +109,36 @@
       {msg:"Chalo itna click kr rhi ho to dikha hi deta hun",btn:"Next"}
     ];
 
+    function playClickSound() {
+      let audio = new Audio("click.mp3"); // apna sound file name yahan
+      audio.play();
+    }
+
     function yesPopups(index){
       if(index < yesMsgs.length){
         let popup = document.createElement("div");
         popup.className = "popup";
         popup.style.top = Math.random()*70 + "%";
         popup.style.left = Math.random()*70 + "%";
-        popup.innerHTML = yesMsgs[index].msg + 
-          `<br><button onclick="yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
+
+        // agar last popup hai
+        if(index === yesMsgs.length - 1){
+          popup.innerHTML = yesMsgs[index].msg + 
+            `<br><button onclick="goToStep2()">${yesMsgs[index].btn}</button>`;
+        } else {
+          popup.innerHTML = yesMsgs[index].msg + 
+            `<br><button onclick="playClickSound(); yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
+        }
+
         document.body.appendChild(popup);
-      } else {
-        // saare popups clear karke next step pe jao
-        document.querySelectorAll(".popup").forEach(p => p.remove());
-        window.location.href = "step2.html"; // next step
       }
+    }
+
+    function goToStep2(){
+      // saare popups clear
+      document.querySelectorAll(".popup").forEach(p => p.remove());
+      // direct Step 2 open
+      window.location.href = "step2.html";
     }
   </script>
 </body>
