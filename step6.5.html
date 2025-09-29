@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 6.5</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('bg_step6.5.jpg') no-repeat center center/cover;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 42px;
+      font-weight: bold;
+      color: black;
+      overflow: hidden;
+    }
+    h2 {
+      margin-bottom: 30px;
+      font-size: 48px;
+    }
+    .btn {
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 28px;
+      font-weight: bold;
+      background: #ff4d6d;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+    }
+    .heart {
+      position: fixed;
+      opacity: 0.7;
+      font-size: 200px;
+      animation: floatMove 8s linear infinite;
+    }
+    @keyframes floatMove {
+      0%   { transform: translate(0,0) rotate(0deg); }
+      25%  { transform: translate(50px,-200px) rotate(30deg); }
+      50%  { transform: translate(-80px,150px) rotate(-20deg); }
+      75%  { transform: translate(120px,-100px) rotate(45deg); }
+      100% { transform: translate(0,0) rotate(0deg); }
+    }
+  </style>
+</head>
+<body onload="startStep65()">
+
+  <h2>Kya banogi Meri 😁</h2>
+  <div id="options"></div>
+
+  <script>
+    let audio;
+
+    function startStep65() {
+      audio = new Audio('irritate.mp3');
+      audio.loop = true;
+      audio.play();
+
+      // Correct order with "Each one🥳" at 7 and "Meri Jasmine" at 10
+      let options = [
+        "Bhen ki bhabi😁",
+        "Maa ki Bahu🥲",
+        "Mere Bacho ki Mummy😅",
+        "Mere Aunty ke Bhanji😁",
+        "Wifeeey✨",
+        "Future♥️",
+        "Each one🥳",         // <-- correct answer (position 7)
+        "Meri Daktarrr sahiba",
+        "Meri Jaanaaaa✨",
+        "Meri Jasmine"        // <-- shifted to 10th
+      ];
+
+      let optDiv = document.getElementById("options");
+      options.forEach((opt,i)=>{
+        let btn = document.createElement("button");
+        btn.className="btn";
+        btn.innerText=opt;
+        btn.onclick=()=>checkAnswer(opt);
+        optDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(choice){
+      if(choice === "Each one🥳"){ 
+        clearHearts();
+        window.location.href = "step7.html"; 
+      } else {
+        spawnHeart();
+      }
+    }
+
+    function spawnHeart(){
+      let heart=document.createElement("div");
+      heart.className="heart";
+      heart.innerHTML="❤️";
+      heart.style.left=Math.random()*70+"vw";
+      heart.style.top=Math.random()*70+"vh";
+      document.body.appendChild(heart);
+    }
+
+    function clearHearts(){
+      document.querySelectorAll('.heart').forEach(h => h.remove());
+    }
+  </script>
+
+</body>
+</html>
