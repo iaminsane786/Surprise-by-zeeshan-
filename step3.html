@@ -19,14 +19,14 @@
     }
 
     h1 {
-      font-size: 32px;   /* same size as Step 2 */
+      font-size: 70px;   /* same size as Step 2 */
       font-weight: bold;
       color: red;
       margin-bottom: 30px;
     }
 
     img {
-      width: 350px;   /* same as Step 2 */
+      width: 500px;   /* same as Step 2 */
       max-width: 90%;
       margin-bottom: 20px;
       border-radius: 20px;
@@ -35,8 +35,8 @@
 
     .btn {
       margin: 15px;
-      padding: 14px 30px;
-      font-size: 26px;  /* same as Step 1 */
+      padding: 15px 40px;
+      font-size: 30px;  /* same as Step 1 */
       background: #ff4d6d;
       border: none;
       border-radius: 12px;
@@ -52,14 +52,14 @@
       transform: translate(-50%, -50%);
       background: rgba(0,0,0,0.8);
       color: white;
-      padding: 20px 40px;
-      font-size: 26px;  /* popup bhi readable but bada nahi */
+      padding: 25px 50px;
+      font-size: 35px;  /* bada popup text */
       border-radius: 12px;
       display: none;
     }
   </style>
 </head>
-<body>
+<body onload="playMusic()">
 
   <img src="center_step3.jpg" alt="Smile Image">
 
@@ -73,6 +73,14 @@
   <div id="popup" class="popup">No No sochna pdega 😁</div>
 
   <script>
+    let audio;
+
+    function playMusic() {
+      audio = new Audio('smile.mp3');  // yahan apna song ka naam daalna
+      audio.loop = true;
+      audio.play();
+    }
+
     function noSmile(){
       const popup = document.getElementById("popup");
       popup.style.display = "block";
@@ -80,7 +88,8 @@
     }
 
     function goNext(){
-      window.location.href = "step4.html"; // Next step
+      audio.pause(); // next step me jane se pehle music band
+      window.location.href = "step4.html"; 
     }
   </script>
 
