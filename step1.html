@@ -60,7 +60,6 @@
     .heart {
       position: fixed;
       font-size: 70px;
-      opacity: 0.5;
       animation: float 6s linear infinite;
     }
     @keyframes float {
@@ -77,19 +76,28 @@
   </div>
 
   <script>
-    // Floating hearts continuously
+    // Floating random colored hearts
     setInterval(() => {
       let heart = document.createElement("div");
       heart.className = "heart";
       heart.innerHTML = "❤️";
       heart.style.left = Math.random() * 90 + "vw";
       heart.style.top = "100vh";
+
+      // Random color + transparency
+      const colors = ["red", "pink", "purple", "orange", "blue", "green"];
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.opacity = (Math.random() * 0.4 + 0.3).toFixed(2);
+
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }, 800);
 
-    // NAA button popup
+    // NAA button popup + sound
     function noPopup() {
+      let audio = new Audio("naa_sound.mp3");
+      audio.play();
+
       let popup = document.createElement("div");
       popup.className = "popup";
       popup.style.top = "40%";
@@ -109,26 +117,31 @@
       {msg:"Chalo itna click kr rhi ho to dikha hi deta hun",btn:"Next"}
     ];
 
-    // Sounds list
+    // Sounds list (7 total)
     const sounds = [
-      "sound1.mp3", // First "HAAN"
+      "sound1.mp3", // First HAAN
       "sound2.mp3", // Popup 1
       "sound3.mp3", // Popup 2
       "sound4.mp3", // Popup 3
-      "sound5.mp3"  // Popup 4
+      "sound5.mp3", // Popup 4
+      "sound6.mp3", // Popup 5
+      "sound7.mp3"  // Last popup button
     ];
 
-    function playClickSound(index) {
+    function playClickSound(index, callback) {
       if(index < sounds.length){
         let audio = new Audio(sounds[index]);
         audio.play();
+        if(callback){
+          audio.onended = callback; // step2 open after sound ends
+        }
       }
     }
 
-    // First HAAN → pehle sound + first popup
+    // First HAAN → play sound1 + show popup1
     function startYes(){
-      playClickSound(0); // pehle sound
-      yesPopups(0);      // pehla popup
+      playClickSound(0);
+      yesPopups(0);
     }
 
     function yesPopups(index){
@@ -138,10 +151,10 @@
         popup.style.top = Math.random()*70 + "%";
         popup.style.left = Math.random()*70 + "%";
 
-        // last popup (6th) → bina sound, direct step2
+        // Last popup (6th) → sound7 + then go step2
         if(index === yesMsgs.length - 1){
           popup.innerHTML = yesMsgs[index].msg + 
-            `<br><button onclick="goToStep2()">${yesMsgs[index].btn}</button>`;
+            `<br><button onclick="playClickSound(6, goToStep2)">${yesMsgs[index].btn}</button>`;
         } else {
           popup.innerHTML = yesMsgs[index].msg + 
             `<br><button onclick="playClickSound(${index+1}); yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
