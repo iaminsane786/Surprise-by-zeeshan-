@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 7 - Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: black;
+    }
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+    }
+    h1, p {
+      font-size: 40px; /* bada text size */
+      font-weight: bold;
+    }
+    img {
+      width: 390px; /* Step 2 se 30% bada */
+    }
+    video {
+      width: 520px; /* Video ko 30% bada kar diya */
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content" id="main"></div>
+
+  <script>
+    let audio;
+
+    function showStep7(){
+      document.body.style.backgroundImage = "url('bg_step7.jpg')";
+
+      // Step 7 start hote hi music play hoga
+      playAudio("pksong.mp3");
+
+      // Pehle 5 sec tak image + text
+      document.getElementById("main").innerHTML = `
+        <img src="center_step7.jpg"><br>
+        <p>Kya Dekh rhe ho SHONA 😁✨</p>
+      `;
+
+      // 5 sec baad video + final text
+      setTimeout(()=>{
+        document.getElementById("main").innerHTML = `
+          <video autoplay loop muted>
+            <source src="final_video.mp4" type="video/mp4">
+          </video>
+          <p>
+            Hey Jasmine just wanted to say you I will fall for you in zero gravity also 😅 <br>
+            You are a blessing for me blessed by Allah swt ♥️ thank u for coming in my life <br>
+            and InshaAllah we will do nikah, Allah swt will help us Ameen✨
+          </p>
+        `;
+      }, 5000);
+    }
+
+    function playAudio(file){
+      stopAudio();
+      audio = new Audio(file);
+      audio.loop = true;
+      audio.play();
+    }
+
+    function stopAudio(){
+      if(audio){
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+
+    // Start Step 7
+    showStep7();
+  </script>
+</body>
+</html>
