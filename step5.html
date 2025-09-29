@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 5</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('bg_step5.jpg') no-repeat center center/cover;
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+</head>
+<body onload="startStep5()">
+
+  <script>
+    let audio;
+
+    function startStep5() {
+      // Play heartbeat audio
+      audio = new Audio('heartbeat.mp3');
+      audio.loop = true;
+      audio.play();
+
+      // 10 sec ke baad step 6 pe chala jaega
+      setTimeout(() => {
+        window.location.href = "step6.html"; 
+      }, 10000);
+    }
+  </script>
+
+</body>
+</html>
