@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 1 - Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: url('bg_step1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: black;
+    }
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: bold;
+    }
+    .btn {
+      margin: 20px;
+      padding: 15px 30px;
+      background: red;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .popup {
+      position: absolute;
+      background: rgba(255,255,255,0.95);
+      color: black;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 20px;
+      border-radius: 12px;
+      border: 3px solid red;
+      max-width: 300px;
+    }
+    .popup button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 20px;
+      font-weight: bold;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .heart {
+      position: fixed;
+      font-size: 70px;
+      opacity: 0.5;
+      animation: float 6s linear infinite;
+    }
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+  </style>
+</head>
+<body>
+  <div class="content" id="main">
+    <h1>Hey Jasmine 🌸 want a surprise ✨??</h1>
+    <button class="btn" onclick="noPopup()">NAA</button>
+    <button class="btn" onclick="yesPopups(0)">HAAN</button>
+  </div>
+
+  <script>
+    // Floating hearts continuously
+    setInterval(() => {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 90 + "vw";
+      heart.style.top = "100vh";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+
+    // NAA button popup
+    function noPopup() {
+      let popup = document.createElement("div");
+      popup.className = "popup";
+      popup.style.top = "40%";
+      popup.style.left = "40%";
+      popup.innerHTML = "Pls choose Haan na my red rose 🌹";
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 2000);
+    }
+
+    // Yes Popups
+    const yesMsgs = [
+      {msg:"Sach me?",btn:"Haan"},
+      {msg:"Wakai me na?",btn:"Haan"},
+      {msg:"Dekhogi na?",btn:"Haan"},
+      {msg:"Itni bi kya jaldi h 😁",btn:"Haan"},
+      {msg:"Uff ye Zeeshan bi na pagal krwa dega tumhe 🥲",btn:"Next"},
+      {msg:"Chalo itna click kr rhi ho to dikha hi deta hun",btn:"Next"}
+    ];
+
+    function yesPopups(index){
+      if(index < yesMsgs.length){
+        let popup = document.createElement("div");
+        popup.className = "popup";
+        popup.style.top = Math.random()*70 + "%";
+        popup.style.left = Math.random()*70 + "%";
+        popup.innerHTML = yesMsgs[index].msg + 
+          `<br><button onclick="yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
+        document.body.appendChild(popup);
+      } else {
+        // saare popups clear karke next step pe jao
+        document.querySelectorAll(".popup").forEach(p => p.remove());
+        window.location.href = "step2.html"; // next step
+      }
+    }
+  </script>
+</body>
+</html>
