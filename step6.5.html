@@ -23,6 +23,20 @@
     h2 {
       margin-bottom: 30px;
       font-size: 48px;
+      line-height: 1.4;
+    }
+    h2 span {
+      font-size: 36px;
+      font-weight: normal;
+      display: block;
+      margin-top: 10px;
+      color: #ff4d6d;
+      text-shadow: 0 0 10px rgba(255,77,109,0.8);
+      animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(255,77,109,0.8); }
+      to   { text-shadow: 0 0 20px rgba(255,0,100,1); }
     }
     .btn {
       margin: 10px;
@@ -34,6 +48,10 @@
       border-radius: 12px;
       color: white;
       cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.1);
     }
     .heart {
       position: fixed;
@@ -52,7 +70,11 @@
 </head>
 <body onload="startStep65()">
 
-  <h2>Kya banogi Meri 😁</h2>
+  <h2>
+    KYA BANOGI MERI ???😇
+    <span>SELECT RIGHT ANSWER🤭</span>
+  </h2>
+
   <div id="options"></div>
 
   <script>
@@ -63,18 +85,18 @@
       audio.loop = true;
       audio.play();
 
-      // Correct order with "Each one🥳" at 7 and "Meri Jasmine" at 10
+      // Correct order with "Each one🥳" at 7 and "Meri Jasmine🌸" at 10
       let options = [
-        "Bhen ki bhabi😁",
-        "Maa ki Bahu🥲",
+        "Mere Bhen ki bhabi😁",
+        "Mere Maa ki Bahu🥲",
         "Mere Bacho ki Mummy😅",
         "Mere Aunty ke Bhanji😁",
         "Wifeeey✨",
         "Future♥️",
         "Each one🥳",         // <-- correct answer (position 7)
-        "Meri Daktarrr sahiba",
+        "Meri Daktarrr sahiba🌷",
         "Meri Jaanaaaa✨",
-        "Meri Jasmine"        // <-- shifted to 10th
+        "Meri Jasmine🌸"      // <-- shifted to 10th
       ];
 
       let optDiv = document.getElementById("options");
