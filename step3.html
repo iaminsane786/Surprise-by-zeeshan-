@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 3</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('bg_step3.jpg') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 70px;   /* same size as Step 2 */
+      font-weight: bold;
+      color: red;
+      margin-bottom: 30px;
+    }
+
+    img {
+      width: 500px;   /* same as Step 2 */
+      max-width: 90%;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn {
+      margin: 15px;
+      padding: 15px 40px;
+      font-size: 30px;  /* same as Step 1 */
+      background: #ff4d6d;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+    }
+
+    .popup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 25px 50px;
+      font-size: 35px;  /* bada popup text */
+      border-radius: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="center_step3.jpg" alt="Smile Image">
+
+  <h1>Pehle ek SMILE kro aur mujhe imagine kro 🌷<br> jaldi jaldi 😁..... Krliya ??</h1>
+
+  <div>
+    <button class="btn" onclick="noSmile()">NAA</button>
+    <button class="btn" onclick="goNext()">HAAN</button>
+  </div>
+
+  <div id="popup" class="popup">No No sochna pdega 😁</div>
+
+  <script>
+    function noSmile(){
+      const popup = document.getElementById("popup");
+      popup.style.display = "block";
+      setTimeout(()=> popup.style.display = "none", 2000);
+    }
+
+    function goNext(){
+      window.location.href = "step4.html"; // Next step
+    }
+  </script>
+
+</body>
+</html>
