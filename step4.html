@@ -45,7 +45,8 @@
   <div class="content">
     <img src="center_step4.jpg" alt="Step 4 Image">
     <p>Hahaha mast thi photo aapki 😁<br> maine kheech li ✨</p>
-    <button class="btn" onclick="alert('Next step yaha call hoga!')">Next</button>
+    <!-- Ab next button step5 pe le jayega -->
+    <button class="btn" onclick="goToStep5()">Next</button>
   </div>
 
   <script>
@@ -54,6 +55,10 @@
       audio = new Audio('chunari.mp3'); // Step 4 song
       audio.loop = true;
       audio.play();
+    }
+
+    function goToStep5() {
+      window.location.href = "step5.html"; 
     }
   </script>
 </body>
