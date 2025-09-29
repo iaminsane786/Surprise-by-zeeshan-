@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 2 - Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-image: url('bg_step2.jpg');
+      background-size: cover;
+      background-position: center;
+      color: black;
+    }
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+    }
+    h1 {
+      font-size: 72px; /* bada text */
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: black;
+    }
+    img {
+      width: 650px; /* 30% aur bada image */
+      margin-bottom: 30px;
+      border-radius: 20px;
+    }
+    p {
+      font-size: 56px; /* text ka size step 1 jaisa */
+      font-weight: bold;
+      color: black;
+      line-height: 1.4;
+    }
+    .btn {
+      margin-top: 30px;
+      padding: 20px 40px;
+      background: red;
+      border: none;
+      border-radius: 15px;
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <img src="center_step2.jpg" alt="center image"><br>
+    <p>
+      Pehlee ek gaana sunlo meri Jasmine🌸 <br>
+      – GAAATA RHE MAJAA DILLLLL TUHI MAAJII MANJILLLLLL 🎵🎸
+    </p>
+    <button class="btn" onclick="nextStep()">Next</button>
+  </div>
+
+  <script>
+    let audio;
+
+    function playAudio() {
+      audio = new Audio("maja.mp3"); // tumhara diya audio
+      audio.loop = true;
+      audio.play();
+    }
+
+    function stopAudio() {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+
+    function nextStep() {
+      stopAudio();
+      window.location.href = "step3.html"; // step 3 pe bhej dega
+    }
+
+    // Jaise hi page load hoga music start
+    window.onload = playAudio;
+  </script>
+</body>
+</html>
