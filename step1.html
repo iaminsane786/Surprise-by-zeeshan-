@@ -109,9 +109,20 @@
       {msg:"Chalo itna click kr rhi ho to dikha hi deta hun",btn:"Next"}
     ];
 
-    function playClickSound() {
-      let audio = new Audio("click.mp3"); // apna sound file name yahan
-      audio.play();
+    // Alag sounds list
+    const sounds = [
+      "sound1.mp3", // Popup 1
+      "sound2.mp3", // Popup 2
+      "sound3.mp3", // Popup 3
+      "sound4.mp3", // Popup 4
+      "sound5.mp3"  // Popup 5
+    ];
+
+    function playClickSound(index) {
+      if(index < sounds.length){
+        let audio = new Audio(sounds[index]);
+        audio.play();
+      }
     }
 
     function yesPopups(index){
@@ -121,13 +132,13 @@
         popup.style.top = Math.random()*70 + "%";
         popup.style.left = Math.random()*70 + "%";
 
-        // agar last popup hai
+        // last popup (6th) → bina sound, direct step2
         if(index === yesMsgs.length - 1){
           popup.innerHTML = yesMsgs[index].msg + 
             `<br><button onclick="goToStep2()">${yesMsgs[index].btn}</button>`;
         } else {
           popup.innerHTML = yesMsgs[index].msg + 
-            `<br><button onclick="playClickSound(); yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
+            `<br><button onclick="playClickSound(${index}); yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
         }
 
         document.body.appendChild(popup);
@@ -135,9 +146,7 @@
     }
 
     function goToStep2(){
-      // saare popups clear
       document.querySelectorAll(".popup").forEach(p => p.remove());
-      // direct Step 2 open
       window.location.href = "step2.html";
     }
   </script>
