@@ -73,7 +73,7 @@
   <div class="content" id="main">
     <h1>Hey Jasmine 🌸 want a surprise ✨??</h1>
     <button class="btn" onclick="noPopup()">NAA</button>
-    <button class="btn" onclick="yesPopups(0)">HAAN</button>
+    <button class="btn" onclick="startYes()">HAAN</button>
   </div>
 
   <script>
@@ -109,13 +109,13 @@
       {msg:"Chalo itna click kr rhi ho to dikha hi deta hun",btn:"Next"}
     ];
 
-    // Alag sounds list
+    // Sounds list
     const sounds = [
-      "sound1.mp3", // Popup 1
-      "sound2.mp3", // Popup 2
-      "sound3.mp3", // Popup 3
-      "sound4.mp3", // Popup 4
-      "sound5.mp3"  // Popup 5
+      "sound1.mp3", // First "HAAN"
+      "sound2.mp3", // Popup 1
+      "sound3.mp3", // Popup 2
+      "sound4.mp3", // Popup 3
+      "sound5.mp3"  // Popup 4
     ];
 
     function playClickSound(index) {
@@ -123,6 +123,12 @@
         let audio = new Audio(sounds[index]);
         audio.play();
       }
+    }
+
+    // First HAAN → pehle sound + first popup
+    function startYes(){
+      playClickSound(0); // pehle sound
+      yesPopups(0);      // pehla popup
     }
 
     function yesPopups(index){
@@ -138,7 +144,7 @@
             `<br><button onclick="goToStep2()">${yesMsgs[index].btn}</button>`;
         } else {
           popup.innerHTML = yesMsgs[index].msg + 
-            `<br><button onclick="playClickSound(${index}); yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
+            `<br><button onclick="playClickSound(${index+1}); yesPopups(${index+1})">${yesMsgs[index].btn}</button>`;
         }
 
         document.body.appendChild(popup);
